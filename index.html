@@ -33,6 +33,7 @@
         <option value="cpw">Cost-Per-Wear analysis</option>
         <option value="ppd">Price-Per-Day (you've had it forever)</option>
         <option value="split">Splitting with friends</option>
+        <option value="alt">Found it for cheaper somewhere else</option>
       </select>
     </div>
 
@@ -63,6 +64,16 @@
             <span class="input-prefix">$</span>
             <input type="number" id="shipping" placeholder="0.00" min="0" step="0.01">
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-fields" id="alt-fields">
+      <div class="field">
+        <label for="new-price">New deal you found</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="new-price" placeholder="0.00" min="0" step="0.01">
         </div>
       </div>
     </div>

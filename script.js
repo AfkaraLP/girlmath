@@ -1,11 +1,11 @@
 /* Scenario toggle */
 function onScenarioChange() {
-  const s = document.getElementById('scenario').value;
-  ['treat','sale','cpw','ppd','split'].forEach(id => {
+  const scenario = document.getElementById('scenario').value;
+  ['treat','sale','cpw','ppd','split','alt'].forEach(id => {
     document.getElementById(id+'-fields').classList.remove('visible');
   });
-  const map = { treat:'treat', sale:'sale', cpw:'cpw', ppd:'ppd', split:'split' };
-  if (map[s]) document.getElementById(map[s]+'-fields').classList.add('visible');
+  const map = { treat:'treat', sale:'sale', cpw:'cpw', ppd:'ppd', split:'split', alt:'alt' };
+  if (map[scenario]) document.getElementById(map[scenario]+'-fields').classList.add('visible');
 }
 
 /* Randomizer */
@@ -236,6 +236,13 @@ function calculate() {
       amount = fmt(each)+' / person'; amountClass = 'is-profit'; verdict = 'COLLABORATION WIN';
       just = pick([`Your individual exposure is only ${fmt(each)}. The thrill, however, is shared equally at 100% each. Exceptional economics.`,`${fmt(each)} per person is the girl math sweet spot. Shared costs, undivided vibes.`]);
     }
+    //  ALTERNATIVE SITE
+  } else if (scenario === 'alt') {
+    const newPrice = parseFloat(document.getElementById('new-price').value) || 0.0;
+
+    const difference = price - newPrice;
+    amount = '+'+fmt(difference); amountClass = 'is-profit'; verdict = 'SAVINGS = INCOME';
+    just = `You showed those greedy guys from the last site who’s boss. You not only got that favorite purse you’ve been eyeing for so long, but you also made ${fmt(-difference)} in the process.`
   }
 
   showReceipt({ lines, amount, amountClass, verdict, justification: just, footerNote });
