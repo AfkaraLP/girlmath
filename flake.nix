@@ -16,6 +16,8 @@
         packages = with pkgs; [
           prettier
           vscode-langservers-extracted
+          gopls
+          go
         ];
       };
     };

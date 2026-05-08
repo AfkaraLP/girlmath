@@ -499,6 +499,21 @@ select option {
   line-height: 1.8;
 }
 
+.embed-link {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: none;
+  margin-top: 4px;
+}
+.embed-link a {
+  color: #c9a84c;
+  text-decoration: none;
+}
+.embed-link a:hover {
+  text-decoration: underline;
+}
+
 /* ── Typewriter cursor ── */
 .tw-cursor {
   display: inline-block;

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Girl Math&trade; &mdash; {{.Verdict}}</title>
+  <meta property="og:title" content="Girl Math&trade; &mdash; {{.Verdict}}" />
+  <meta property="og:description" content="{{.Message}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/" />
+  <meta name="theme-color" content="#0d0a0f" />
+  <meta http-equiv="refresh" content="3;url=/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <style>
+    body.embed-page {
+      align-items: center;
+      padding: 20px;
+    }
+
+    .embed-card {
+      text-align: center;
+      padding: 48px 36px 36px;
+    }
+
+    .embed-scenario {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .embed-amount {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 64px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1;
+      margin: 8px 0 2px;
+    }
+
+    .embed-amount.is-profit {
+      color: var(--green);
+    }
+
+    .embed-amount.is-free {
+      color: var(--cream);
+    }
+
+    .embed-amount.is-loss {
+      color: var(--red);
+    }
+
+    .embed-verdict {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .embed-verdict.is-profit {
+      color: var(--green);
+    }
+
+    .embed-verdict.is-free {
+      color: var(--gold);
+    }
+
+    .embed-verdict.is-loss {
+      color: var(--red);
+    }
+
+    .embed-message {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--cream);
+      line-height: 1.6;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .embed-redirect {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-top: 24px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body class="embed-page">
+  <div class="page">
+    <div class="card embed-card">
+      <div class="card-accent"></div>
+      <div class="embed-scenario">{{.Scenario}} &mdash; ${{.Price}}</div>
+      <div class="embed-amount {{.CSSClass}}">{{.Amount}}</div>
+      <div class="embed-verdict {{.CSSClass}}">{{.Verdict}}</div>
+      <div class="embed-message">{{.Message}}</div>
+      <div class="embed-redirect">girlmath &middot; redirecting&hellip;</div>
+    </div>
+  </div>
+  <script>
+    setTimeout(function () {
+      location.href = "/";
+    }, 3000);
+  </script>
+</body>
+
+</html>

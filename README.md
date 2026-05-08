@@ -1,6 +1,6 @@
 # ✦ Girl Math™
 
-> *Certified Financial Logic.*
+> _Certified Financial Logic._
 
 A beautifully unhinged calculator that proves, mathematically and legally, that your purchases are free (or even profit). Features receipt-style outputs, typewriter justifications, and confetti because the vibes are peer-reviewed.
 
@@ -12,8 +12,12 @@ I kept getting feature requests in my DMs. So now there's a GitHub repo. Please 
 
 ## Run It Locally
 
-Run a simple fileserver (with e.g. Busybox) and simply open the index file.
+Requires you to have `go` installed.
+
+```bash
+go run girlmath.go
+```
 
 ---
 
-*Girl Math is real math. This is legally binding.* ✦
+_Girl Math is real math. This is legally binding._ ✦

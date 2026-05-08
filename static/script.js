@@ -33,6 +33,17 @@ function appendAnalytics(scenario, inputs) {
   localStorage.setItem("stats", JSON.stringify(analytics));
 }
 
+/* Copy embed URL to clipboard */
+function copyEmbed(e, url) {
+  e.preventDefault();
+  navigator.clipboard.writeText(url).then(() => {
+    const el = e.target;
+    const orig = el.textContent;
+    el.textContent = "Copied!";
+    setTimeout(() => (el.textContent = orig), 2000);
+  });
+}
+
 /* Date string for receipt */
 function receiptDate() {
   return new Date().toLocaleDateString("en-US", {
@@ -473,6 +484,20 @@ function calculate() {
       newPrice: newPrice,
     });
   }
+
+  // Build embed URL for this result
+  const embedParams = new URLSearchParams({
+    s: scenario,
+    p: priceRaw,
+    r: amountClass,
+  });
+  const embedUrl = location.origin + "/embed?" + embedParams;
+
+  if (footerNote) footerNote += "<br><br>";
+  footerNote +=
+    '<span class="embed-link">&#10022; <a href="#" onclick="copyEmbed(event, \'' +
+    embedUrl +
+    "')\">Share this result</a></span>";
 
   showReceipt({
     lines,
