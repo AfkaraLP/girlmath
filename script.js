@@ -11,6 +11,20 @@ function onScenarioChange() {
 /* Randomizer */
 const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 
+function appendAnalytics(scenario, inputs) {
+  if (!['treat','sale','cpw','ppd','split','alt'].includes(scenario)) {
+    return;
+  }
+  const analytics = JSON.parse(localStorage.getItem("stats") ?? "[]");
+  analytics.push({
+    scenario: scenario,
+    timestamp: Date.now(),
+    inputs: inputs
+  });
+
+  localStorage.setItem("stats", JSON.stringify(analytics));
+}
+
 /* Date string for receipt */
 function receiptDate() {
   return new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric', hour:'2-digit', minute:'2-digit'});
@@ -148,6 +162,12 @@ function calculate() {
       amount = '$0.00'; amountClass = 'is-free'; verdict = 'JUSTIFIED';
       just = pick(['The emotional dividend alone covers the cost. Your nervous system will thank you.','You\'ve earned this. The happiness-adjusted cost is zero. The math is flawless.','This is an investment in the version of yourself who deserves nice things. That version is you.','Future you will look back and call this a bargain. Trust her. She has the receipts.']);
     }
+    appendAnalytics('treat', {
+        price: price,
+        shipping: shipping,
+        payment: payment
+      }
+    );
 
   //  SALE 
   } else if (scenario === 'sale') {
@@ -165,11 +185,17 @@ function calculate() {
       just = pick([`You generated ${fmt(saved)} from nothing. That is income. Please go spend your earnings on something else.`,`A saving of ${fmt(saved)} is a revenue event. Deposit it immediately into a new purchase.`,`The discount is essentially a cheque written to you. Cash it. On a new item. Today.`]);
     }
 
+    appendAnalytics('treat', {
+        price: price,
+        orig: orig,
+      }
+    );
   //  REFUND 
   } else if (scenario === 'refund') {
     amount = '+'+fmt(price); amountClass = 'is-profit'; verdict = 'NEW INCOME';
     lines.push(addLine('Refund Received', '+'+fmt(price)));
     just = pick([`Your account gained ${fmt(price)}. This is functionally identical to earning ${fmt(price)}. You just got paid.`,`A refund is a gift from past-you to present-you. She bought it, you sold it back. The profit is yours.`,`${fmt(price)} returned to your account. The original purchase has been erased from history. The money, however, is real and new.`]);
+    appendAnalytics('refund', {price: price});
 
   //  SKIPPED 
   } else if (scenario === 'skipped') {
@@ -177,6 +203,7 @@ function calculate() {
     amount = '+'+fmt(price); amountClass = 'is-profit'; verdict = 'SAVINGS = INCOME';
     just = pick([`You did not spend ${fmt(price)}, which is mathematically equivalent to earning ${fmt(price)}. Deposit it immediately.`,`The money that stays in your account due to your restraint is a return on investment. You are an investor.`,`By walking away, you effectively paid yourself ${fmt(price)}. Use this as justification for the next purchase.`]);
 
+    appendAnalytics('skipped', {price: price});
   //  COST PER WEAR 
   } else if (scenario === 'cpw') {
     const wears = parseInt(document.getElementById('wears').value) || 0;
@@ -197,6 +224,11 @@ function calculate() {
       amount = fmt(cpw)+' / wear'; amountClass = ''; verdict = 'WEAR IT MORE';
       just = `Currently ${fmt(cpw)} per wear. Get the cost down by increasing wears. You know what to do — start planning outfits tonight.`;
     }
+    appendAnalytics('cpw', {
+        price: price,
+        wears: wears,
+      }
+    );
 
   //  PRICE PER DAY 
   } else if (scenario === 'ppd') {
@@ -219,6 +251,12 @@ function calculate() {
       just = `Still ${fmt(ppd)}/day. Keep using it daily and check back in ${Math.round(days/2)} more days — the numbers will look much better.`;
     }
 
+    appendAnalytics('ppd', {
+        price: price,
+        days: days,
+      }
+    );
+
   //  SPLIT 
   } else if (scenario === 'split') {
     const people = parseInt(document.getElementById('friends').value) || 1;
@@ -236,13 +274,35 @@ function calculate() {
       amount = fmt(each)+' / person'; amountClass = 'is-profit'; verdict = 'COLLABORATION WIN';
       just = pick([`Your individual exposure is only ${fmt(each)}. The thrill, however, is shared equally at 100% each. Exceptional economics.`,`${fmt(each)} per person is the girl math sweet spot. Shared costs, undivided vibes.`]);
     }
+    appendAnalytics('split', {
+        price: price,
+        people: people,
+      }
+    );
     //  ALTERNATIVE SITE
   } else if (scenario === 'alt') {
     const newPrice = parseFloat(document.getElementById('new-price').value) || 0.0;
 
     const difference = price - newPrice;
-    amount = '+'+fmt(difference); amountClass = 'is-profit'; verdict = 'SAVINGS = INCOME';
-    just = `You showed those greedy guys from the last site who’s boss. You not only got that favorite purse you’ve been eyeing for so long, but you also made ${fmt(-difference)} in the process.`
+
+    if (difference > 0) {
+      amount = '+' + fmt(difference); amountClass = 'is-profit'; verdict = 'SAVINGS = INCOME';
+
+      just = `You showed those greedy people from the other site who’s boss. You not only got that favorite purse you’ve been eyeing for so long, but you also saved ${fmt(difference)} in the process.`;
+    } else if (difference < 0) {
+      amount = '-' + fmt(Math.abs(difference)); amountClass = 'is-loss'; verdict = 'EVEN QUEENS AREN’T PERFECT';
+
+      just = `You may have spent ${fmt(Math.abs(difference))} more, but the cheaper one was probably fake anyway.`;
+    } else {
+      amount = fmt(0); amountClass = 'is-free'; verdict = 'BALANCED LIKE A BUDGET QUEEN';
+
+      just = `Same price? That basically means you got it for free, because you didn’t pay more than the other girls did.`;
+    }
+
+    appendAnalytics('alt', {
+      price: price,
+      newPrice: newPrice,
+    });
   }
 
   showReceipt({ lines, amount, amountClass, verdict, justification: just, footerNote });
