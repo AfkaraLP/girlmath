@@ -1,148 +1,202 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Girl Math™ — The Logic Is Irrefutable</title>
-<meta name="description" content="Certified financial advice. Trust the process.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Girl Math™ — The Logic Is Irrefutable</title>
+    <meta
+      name="description"
+      content="Certified financial advice. Trust the process."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
 
-<div class="page">
-  <header class="header">
-    <div class="eyebrow">Certified Financial Logic</div>
-    <h1>Girl <em>Math</em></h1>
-    <p class="tagline">The numbers never lie. Especially these ones.</p>
-  </header>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="eyebrow">Certified Financial Logic</div>
+        <h1>Girl <em>Math</em></h1>
+        <p class="tagline">The numbers never lie. Especially these ones.</p>
+      </header>
 
-  <div class="card">
-    <div class="card-accent"></div>
+      <div class="card">
+        <div class="card-accent"></div>
 
-    <div class="field">
-      <label for="scenario">Scenario</label>
-      <select id="scenario" onchange="onScenarioChange()">
-        <option value="refund">Returning an item</option>
-        <option value="treat">Buying a little treat</option>
-        <option value="sale">It was on sale</option>
-        <option value="skipped">Almost bought it, but walked away</option>
-        <option value="cpw">Cost-Per-Wear analysis</option>
-        <option value="ppd">Price-Per-Day (you've had it forever)</option>
-        <option value="split">Splitting with friends</option>
-        <option value="alt">Found it for cheaper somewhere else</option>
-      </select>
-    </div>
-
-    <div class="field" id="price-field">
-      <label for="price">Tag Price</label>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="price" placeholder="0.00" step="0.01" min="0">
-      </div>
-    </div>
-
-    <div class="sub-fields" id="treat-fields">
-      <div class="two-col">
         <div class="field">
-          <label for="payment">Funded by</label>
-          <select id="payment">
-            <option value="card">Debit / Credit</option>
-            <option value="cash">Physical Cash</option>
-            <option value="giftcard">Gift Card</option>
-            <option value="venmo">Venmo / CashApp</option>
-            <option value="points">Reward Points</option>
-            <option value="found">Money I Found</option>
+          <label for="scenario">Scenario</label>
+          <select id="scenario" onchange="onScenarioChange()">
+            <option value="refund">Returning an item</option>
+            <option value="treat">Buying a little treat</option>
+            <option value="sale">It was on sale</option>
+            <option value="skipped">Almost bought it, but walked away</option>
+            <option value="cpw">Cost-Per-Wear analysis</option>
+            <option value="ppd">Price-Per-Day (you've had it forever)</option>
+            <option value="split">Splitting with friends</option>
+            <option value="alt">Found it for cheaper somewhere else</option>
           </select>
         </div>
-        <div class="field">
-          <label for="shipping">Shipping ($)</label>
+
+        <div class="field" id="price-field">
+          <label for="price">Tag Price</label>
           <div class="input-wrap">
             <span class="input-prefix">$</span>
-            <input type="number" id="shipping" placeholder="0.00" min="0" step="0.01">
+            <input
+              type="number"
+              id="price"
+              placeholder="0.00"
+              step="0.01"
+              min="0"
+            />
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="sub-fields" id="alt-fields">
-      <div class="field">
-        <label for="new-price">New deal you found</label>
-        <div class="input-wrap">
-          <span class="input-prefix">$</span>
-          <input type="number" id="new-price" placeholder="0.00" min="0" step="0.01">
+        <div class="sub-fields" id="treat-fields">
+          <div class="two-col">
+            <div class="field">
+              <label for="payment">Funded by</label>
+              <select id="payment">
+                <option value="card">Debit / Credit</option>
+                <option value="cash">Physical Cash</option>
+                <option value="giftcard">Gift Card</option>
+                <option value="venmo">Venmo / CashApp</option>
+                <option value="points">Reward Points</option>
+                <option value="found">Money I Found</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="shipping">Shipping ($)</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  type="number"
+                  id="shipping"
+                  placeholder="0.00"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-fields" id="alt-fields">
+          <div class="field">
+            <label for="new-price">New deal you found</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                type="number"
+                id="new-price"
+                placeholder="0.00"
+                min="0"
+                step="0.01"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-fields" id="sale-fields">
+          <div class="field">
+            <label for="original-price">Original (Pre-Sale) Price</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                type="number"
+                id="original-price"
+                placeholder="0.00"
+                min="0"
+                step="0.01"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-fields" id="cpw-fields">
+          <div class="field">
+            <label for="wears">Estimated Wears</label>
+            <input
+              type="number"
+              id="wears"
+              placeholder="e.g. 30"
+              min="1"
+              style="padding-left: 18px"
+            />
+          </div>
+        </div>
+
+        <div class="sub-fields" id="ppd-fields">
+          <div class="field">
+            <label for="days-owned">Days You've Owned It</label>
+            <input
+              type="number"
+              id="days-owned"
+              placeholder="e.g. 365"
+              min="1"
+              style="padding-left: 18px"
+            />
+          </div>
+        </div>
+
+        <div class="sub-fields" id="split-fields">
+          <div class="field">
+            <label for="friends">Number of People Splitting</label>
+            <input
+              type="number"
+              id="friends"
+              placeholder="e.g. 3"
+              min="2"
+              style="padding-left: 18px"
+            />
+          </div>
+        </div>
+
+        <button class="btn" onclick="calculate()">
+          ✦ &nbsp;Run the Math &nbsp;✦
+        </button>
+
+        <div class="divider" id="receipt-divider" style="display: none">
+          OFFICIAL ASSESSMENT
+        </div>
+
+        <div class="receipt" id="receipt">
+          <div class="receipt-inner">
+            <div class="receipt-header">
+              <div class="receipt-logo">Girl Math™</div>
+              <div class="receipt-sub">Certified Financial Intelligence</div>
+            </div>
+
+            <div id="receipt-lines"></div>
+
+            <hr class="receipt-separator" />
+
+            <div class="receipt-total">
+              <div class="receipt-total-label">Girl Math Cost</div>
+              <div class="receipt-amount" id="receipt-amount">$0.00</div>
+              <div class="verdict" id="receipt-verdict">FREE</div>
+            </div>
+
+            <div class="receipt-justification" id="receipt-just"></div>
+
+            <div class="receipt-footer" id="receipt-footer">
+              GIRL MATH IS REAL MATH<br />
+              THIS IS LEGALLY BINDING<br />
+              — ✦ —
+            </div>
+          </div>
+          <div class="receipt-tail"></div>
         </div>
       </div>
     </div>
-
-    <div class="sub-fields" id="sale-fields">
-      <div class="field">
-        <label for="original-price">Original (Pre-Sale) Price</label>
-        <div class="input-wrap">
-          <span class="input-prefix">$</span>
-          <input type="number" id="original-price" placeholder="0.00" min="0" step="0.01">
-        </div>
-      </div>
-    </div>
-
-    <div class="sub-fields" id="cpw-fields">
-      <div class="field">
-        <label for="wears">Estimated Wears</label>
-        <input type="number" id="wears" placeholder="e.g. 30" min="1" style="padding-left:18px">
-      </div>
-    </div>
-
-    <div class="sub-fields" id="ppd-fields">
-      <div class="field">
-        <label for="days-owned">Days You've Owned It</label>
-        <input type="number" id="days-owned" placeholder="e.g. 365" min="1" style="padding-left:18px">
-      </div>
-    </div>
-
-    <div class="sub-fields" id="split-fields">
-      <div class="field">
-        <label for="friends">Number of People Splitting</label>
-        <input type="number" id="friends" placeholder="e.g. 3" min="2" style="padding-left:18px">
-      </div>
-    </div>
-
-    <button class="btn" onclick="calculate()">✦ &nbsp;Run the Math &nbsp;✦</button>
-
-    <div class="divider" id="receipt-divider" style="display:none">OFFICIAL ASSESSMENT</div>
-
-    <div class="receipt" id="receipt">
-      <div class="receipt-inner">
-        <div class="receipt-header">
-          <div class="receipt-logo">Girl Math™</div>
-          <div class="receipt-sub">Certified Financial Intelligence</div>
-        </div>
-
-        <div id="receipt-lines"></div>
-
-        <hr class="receipt-separator">
-
-        <div class="receipt-total">
-          <div class="receipt-total-label">Girl Math Cost</div>
-          <div class="receipt-amount" id="receipt-amount">$0.00</div>
-          <div class="verdict" id="receipt-verdict">FREE</div>
-        </div>
-
-        <div class="receipt-justification" id="receipt-just"></div>
-
-        <div class="receipt-footer" id="receipt-footer">
-          GIRL MATH IS REAL MATH<br>
-          THIS IS LEGALLY BINDING<br>
-          — ✦ —
-        </div>
-      </div>
-      <div class="receipt-tail"></div>
-    </div>
-
-  </div>
-</div>
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
