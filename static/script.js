@@ -23,14 +23,16 @@ function appendAnalytics(scenario, inputs) {
   if (!["treat", "sale", "cpw", "ppd", "split", "alt"].includes(scenario)) {
     return;
   }
-  const analytics = JSON.parse(localStorage.getItem("stats") ?? "[]");
-  analytics.push({
-    scenario: scenario,
-    timestamp: Date.now(),
-    inputs: inputs,
-  });
+  try {
+    const analytics = JSON.parse(localStorage.getItem("stats") || "[]");
+    analytics.push({
+      scenario: scenario,
+      timestamp: Date.now(),
+      inputs: inputs,
+    });
 
-  localStorage.setItem("stats", JSON.stringify(analytics));
+    localStorage.setItem("stats", JSON.stringify(analytics));
+  } catch (e) { console.error(e); }
 }
 
 /* Copy embed URL to clipboard */
@@ -306,7 +308,7 @@ function calculate() {
       ]);
     }
 
-    appendAnalytics("treat", {
+    appendAnalytics("sale", {
       price: price,
       orig: orig,
     });
