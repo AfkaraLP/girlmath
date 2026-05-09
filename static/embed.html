@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Girl Math&trade; &mdash; {{.Verdict}}</title>
     <meta property="og:title" content="Girl Math&trade; &mdash; {{.Verdict}}" />
-    <meta property="og:description" content="{{.Message}}" />
+    <meta property="og:description" content="{{.Verdict}} {{.Amount}} &mdash; {{.Message}}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="/" />
     <meta name="theme-color" content="#0d0a0f" />
@@ -108,7 +108,7 @@
         <div class="embed-scenario">{{.Scenario}} &mdash; ${{.Price}}</div>
         <div class="embed-amount {{.CSSClass}}">{{.Amount}}</div>
         <div class="embed-verdict {{.CSSClass}}">{{.Verdict}}</div>
-        <div class="embed-message">{{.Message}}</div>
+        <div class="embed-message">{{.Verdict}} {{.Amount}} &mdash; {{.Message}}</div>
         <div class="embed-redirect">girlmath &middot; redirecting&hellip;</div>
       </div>
     </div>
