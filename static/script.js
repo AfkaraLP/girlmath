@@ -32,7 +32,9 @@ function appendAnalytics(scenario, inputs) {
     });
 
     localStorage.setItem("stats", JSON.stringify(analytics));
-  } catch (e) { console.error(e); }
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 /* Copy embed URL to clipboard */
